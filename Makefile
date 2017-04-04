@@ -22,7 +22,7 @@ $(LIB):
 	@make -C $(LIBPATH)
 
 $(NAME): $(LEMIN_OBJ)
-	$(CC) $(FLAGS) $(LEMIN_OBJ) $(LIBPATH)$(LIB)
+	$(CC) $(FLAGS) -o $(NAME) $(LEMIN_OBJ) $(LIBPATH)$(LIB)
 
 $(LEMIN_O_PATH)%.o: $(LEMIN_S_PATH)%.c
 	$(CC) $(FLAGS) -o $@ $(INC) $(INC_LIB) -c $<
