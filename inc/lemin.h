@@ -52,7 +52,7 @@ typedef struct 	s_lemin
 	t_room 				*end;
 	t_room 				*lst_room;
 	
-	// t_link				*lst_link;
+	t_link				*lst_link;
 
 	t_pars_lst 			*pars_map;
 }				t_lemin;
@@ -87,5 +87,7 @@ int 	ft_room_exist(t_lemin *lem, char *line);
 */
 void 	ft_map_list(t_lemin *lem, char *line);
 int 	ft_is_link(t_lemin *lem, char *line);
+void 	ft_add_link(t_lemin *lem, char *line);
+void 	ft_destroy_lemin(t_lemin *lem);
 
 #endif

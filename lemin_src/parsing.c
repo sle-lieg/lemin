@@ -59,7 +59,8 @@ void 	ft_get_rooms(t_lemin *lem)
 		}
 		else if (ft_is_link(lem, line))
 		{
-			// ft_add_link(lem, line);
+			ft_map_list(lem, line);
+			ft_add_link(lem, line);
 			break ;
 		}
 		else
@@ -75,9 +76,13 @@ void 	ft_get_links(t_lemin *lem)
 	while (ft_get_next_line(0, &line) > 0)
 	{
 		if (ft_is_link(lem, line))
-;//			ft_add_link(lem, line);
+		{
+			ft_map_list(lem, line);
+			ft_add_link(lem, line);
+		}
 		else if (*line == '#')
-			ft_get_cmd(lem, line);
+			ft_map_list(lem, line);
+		// ft_get_cmd(lem, line);
 		else
 			break ;
 	}

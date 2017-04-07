@@ -45,9 +45,18 @@ void 	ft_print_room(t_lemin *lem)
 {
 	t_room *tmp;
 	t_pars_lst *tmp2;
+	t_link *tmp3;
 
 	tmp = lem->lst_room;
-	ft_printf("LST_ROOM\n");
+	tmp2 = lem->pars_map;
+	tmp3 = lem->lst_link;
+	ft_printf("PARS_MAP\n");
+	while (tmp2)
+	{
+		ft_printf("%s\n", tmp2->line);
+		tmp2 = tmp2->next;
+	}
+	ft_printf("\nLST_ROOM\n");
 	if (lem->start)
 		ft_printf("start = %s %d %d\n", lem->start->name, lem->start->x, lem->start->y);
 	if (lem->end)
@@ -57,12 +66,11 @@ void 	ft_print_room(t_lemin *lem)
 		ft_printf("%s %d %d\n", tmp->name, tmp->x, tmp->y);
 		tmp = tmp->next;
 	}
-	ft_printf("\nPARS_MAP\n");
-
-	tmp2 = lem->pars_map;
-	while (tmp2)
+	ft_printf("\nLST_LINK\n");
+	while (tmp3)
 	{
-		ft_printf("%s\n", tmp2->line);
-		tmp2 = tmp2->next;
+		ft_printf("%s - %s\n", tmp3->origin, tmp3->to);
+		tmp3 = tmp3->next;
 	}
+
 }
