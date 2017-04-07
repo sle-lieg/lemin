@@ -27,6 +27,7 @@ SRC_LIB = 	ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c\
 			ft_d_lstdel.c ft_d_lstdelone.c ft_switchchar.c ft_itoa.c\
 			ft_count_n.c ft_pow.c ft_itoa_base.c ft_wchar_len.c ft_wstr_len.c\
 			ft_is_digit_str.c ft_atoil.c ft_is_int_size.c ft_get_next_line.c\
+			ft_free_split.c ft_count_char.c
 
 LIBOBJ 	  = $(addprefix $(PATH_OBJ), $(SRC_LIB:.c=.o))
 PRINTFOBJ = $(addprefix $(PATH_OBJ), $(SRC_PRINTF:.c=.o))
