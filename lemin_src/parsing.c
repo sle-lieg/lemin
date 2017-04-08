@@ -2,33 +2,14 @@
 
 void 	ft_parse_lem(t_lemin *lem)
 {
-	// char *line;
-
-	// line = NULL;
-	// while (ft_get_next_line(0, &line))
-	// {
-	// 	if (ft_is_ant(line) && lem->nb_ant == -1)
-	// 		lem->nb_ants = ft_atoi(line);
-	// 	else if (ft_is_room(line))
-	// 		ft_add_room(lem, line);
-	// 	else if (ft_is_link(line))
-	// 		ft_add_link(lem, line);
-	// 	else if (*line == '#')
-	// 		ft_get_cmd(lem, line);
-	// 	else
-	// 		break ;
-	// }
 	ft_get_ants(lem);
 	ft_get_rooms(lem);
 	ft_get_links(lem);
+	ft_crea_hash_table(lem);
 }
 
 void 	ft_get_ants(t_lemin *lem)
 {
-	//		ANTS
-	//nombre fourmis == une chaine de digit sans espaces;
-	//check if ants. (or negative ants).
-	//check if ant nbr is int size.
 	char *line;
 
 	line = NULL;
@@ -110,11 +91,3 @@ void 	ft_get_cmd(t_lemin *lem, char *line)
 		lem->cmd ^= END;
 	}
 }
-
-// int 	ft_is_ants(char *line)
-// {
-
-// 	if (*line == '-' || !ft_is_digit_str(line) || !ft_is_int_size(line))
-// 		return (0);
-// 	return (1);
-// }

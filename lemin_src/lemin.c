@@ -24,21 +24,21 @@ int 	main(int argc, char **argv)
 	}
 	ft_init_lem(&lem);
 	ft_parse_lem(&lem);
-	ft_print_room(&lem);
+	// ft_print_room(&lem);
 	ft_destroy_lemin(&lem);
 	return (0);
 }
 
 void 	ft_init_lem(t_lemin *lem)
 {
-	lem->nb_ants = -1;
+	lem->nb_ants = 0;
 	lem->nb_room = 0;
 	lem->cmd = 0;
 	lem->pars_map = NULL;
 	lem->start = NULL;
 	lem->end = NULL;
 	lem->lst_room = NULL;
-	// lem->lst_link = NULL;
+	lem->lst_link = NULL;
 }
 
 void 	ft_print_room(t_lemin *lem)
@@ -50,6 +50,8 @@ void 	ft_print_room(t_lemin *lem)
 	tmp = lem->lst_room;
 	tmp2 = lem->pars_map;
 	tmp3 = lem->lst_link;
+	ft_printf("nb room = %d\n", lem->nb_room);
+	ft_printf("nb ants = %d\n", lem->nb_ants);
 	ft_printf("PARS_MAP\n");
 	while (tmp2)
 	{

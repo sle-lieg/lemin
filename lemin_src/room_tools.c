@@ -14,13 +14,6 @@
 
 int 	ft_is_room(t_lemin *lem, char *line)
 {
-	//		ROOMS
-	//chambre == "name", ' ', "digit", ' ', "digit".
-	//name[0] != 'L' ET != '#'
-	//check duplicated name.
-	//check nb de coordonees.
-	//check if letter in coord.
-	//check if start and end room.
 	char **split;
 
 	if (ft_count_char(line, ' ') > 2)

@@ -48,12 +48,11 @@ typedef struct 	s_lemin
 	int 				nb_room;
 	int 				cmd;
 
+	t_room				**tab_hash;
 	t_room 				*start;
 	t_room 				*end;
 	t_room 				*lst_room;
-	
 	t_link				*lst_link;
-
 	t_pars_lst 			*pars_map;
 }				t_lemin;
 
@@ -83,11 +82,26 @@ int 	ft_is_room(t_lemin *lem, char *line);
 int 	ft_room_exist(t_lemin *lem, char *line);
 
 /*
+** /\/\/\/\/\ LINK_TOOLS.C /\/\/\/\/\
+*/
+int 	ft_is_link(t_lemin *lem, char *line);
+void 	ft_add_link(t_lemin *lem, char *line);
+
+/*
 ** /\/\/\/\/\ PARS_TOOLS.C /\/\/\/\/\
 */
 void 	ft_map_list(t_lemin *lem, char *line);
-int 	ft_is_link(t_lemin *lem, char *line);
-void 	ft_add_link(t_lemin *lem, char *line);
 void 	ft_destroy_lemin(t_lemin *lem);
+void 	ft_destroy_links(t_link *tmp_l);
+
+/*
+** /\/\/\/\/\ HASH.C /\/\/\/\/\
+*/
+void 	ft_crea_hash_table(t_lemin *lem);
+void 	ft_init_hash(t_lemin *lem);
+int 	ft_hash(int nb_room, char *str);
+void 	ft_print_hashtab(t_lemin *lem);
+
+
 
 #endif
