@@ -21,7 +21,7 @@ void 	ft_crea_hash_table(t_lemin *lem)
 	ft_init_hash(lem);
 	tmp = lem->lst_room;
 	while (tmp)
-	{		
+	{
 		index = ft_hash(lem->nb_room, tmp->name);
 		prev = lem->tab_hash[index];
 		lem->tab_hash[index] = tmp;
@@ -29,8 +29,7 @@ void 	ft_crea_hash_table(t_lemin *lem)
 		lem->tab_hash[index]->next = prev;
 	}
 
-	ft_print_hashtab(lem);
-
+	// ft_print_hashtab(lem);
 }
 
 void 	ft_print_hashtab(t_lemin *lem)
@@ -82,5 +81,5 @@ int 	ft_hash(int nb_room, char *str)
 		key += str[i];
 		i++;
 	}
-	return (key % nb_room);
+	return (ABS(key % nb_room));
 }

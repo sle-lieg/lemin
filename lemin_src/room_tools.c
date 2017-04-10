@@ -63,6 +63,8 @@ t_room	*ft_new_room(t_lemin *lem, char *line)
 	lem->lst_room->name = ft_strdup(split[0]);
 	lem->lst_room->x = ft_atoi(split[1]);
 	lem->lst_room->y = ft_atoi(split[2]);
+	lem->lst_room->checked = 0;
+	lem->lst_room->link = NULL;
 	lem->lst_room->next = tmp;
 	ft_free_split(split);
 	return (lem->lst_room);

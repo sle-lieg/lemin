@@ -6,6 +6,7 @@ void 	ft_parse_lem(t_lemin *lem)
 	ft_get_rooms(lem);
 	ft_get_links(lem);
 	ft_crea_hash_table(lem);
+	ft_link_room(lem);
 }
 
 void 	ft_get_ants(t_lemin *lem)

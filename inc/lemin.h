@@ -27,12 +27,19 @@ typedef struct 	s_link
 	struct s_link 		*next;
 }				t_link;
 
+typedef struct 	s_conect
+{
+	char 				*name;
+	struct s_conect 	*next;
+}				t_conect;
+
 typedef struct 	s_room
 {
 	char 				*name;
+	int 				checked;
 	int 				x;
 	int 				y;
-	t_link 				*link;
+	t_conect 			*link;
 	struct s_room 		*next;
 }				t_room;
 
@@ -42,11 +49,20 @@ typedef struct 	s_pars_lst
 	struct s_pars_lst 	*next;
 }				t_pars_lst;
 
+typedef struct 	s_file
+{
+	struct s_conect	*room;
+	struct s_conect	*last;
+	struct s_file	*next;
+}				t_file;
+
 typedef struct 	s_lemin
 {
 	int 				nb_ants;
 	int 				nb_room;
 	int 				cmd;
+
+	t_file 				*lst_files;
 
 	t_room				**tab_hash;
 	t_room 				*start;
@@ -72,6 +88,20 @@ void 	ft_get_ants(t_lemin *lem);
 void 	ft_get_rooms(t_lemin *lem);
 void 	ft_get_links(t_lemin *lem);
 void 	ft_get_cmd(t_lemin *lem, char *line);
+
+/*
+** /\/\/\/\/\ FIND_WAY.C /\/\/\/\/\
+*/
+void 	ft_find_way(t_lemin *lem);
+void 	ft_explore(t_lemin *lem, t_room *room);
+void 	ft_new_file(t_lemin *lem);
+void 	ft_copy_files(t_file *new, t_file *old);
+t_room *ft_find_room(t_lemin *lem, t_conect *link);
+int 	ft_not_in_file(t_lemin *lem, char *name);
+void 	ft_add_to_file(t_lemin *lem, char *name);
+void 	ft_init_file(t_lemin *lem);
+void 	ft_check_links(t_lemin *lem, t_room *room);
+
 
 /*
 ** /\/\/\/\/\ ROOM_TOOLS.C /\/\/\/\/\
@@ -102,6 +132,10 @@ void 	ft_init_hash(t_lemin *lem);
 int 	ft_hash(int nb_room, char *str);
 void 	ft_print_hashtab(t_lemin *lem);
 
-
+/*
+** /\/\/\/\/\ LINK.C /\/\/\/\/\
+*/
+void 	ft_link_room(t_lemin *lem);
+t_conect *ft_add_roomlink(char *name, t_conect *next);
 
 #endif
