@@ -40,6 +40,7 @@ typedef struct 	s_room
 	int 				x;
 	int 				y;
 	t_conect 			*link;
+	t_conect 			*tmp_link;
 	struct s_room 		*next;
 }				t_room;
 
@@ -73,6 +74,7 @@ typedef struct 	s_lemin
 }				t_lemin;
 
 void 	ft_print_room(t_lemin *lem);
+void 	ft_print_file(t_lemin *lem);
 
 
 /*
@@ -92,15 +94,17 @@ void 	ft_get_cmd(t_lemin *lem, char *line);
 /*
 ** /\/\/\/\/\ FIND_WAY.C /\/\/\/\/\
 */
+void 	ft_pop_file(t_lemin *lem);
+
 void 	ft_find_way(t_lemin *lem);
 void 	ft_explore(t_lemin *lem, t_room *room);
 void 	ft_new_file(t_lemin *lem);
-void 	ft_copy_files(t_file *new, t_file *old);
+void 	ft_copy_files(t_file *new, t_conect *old);
 t_room *ft_find_room(t_lemin *lem, t_conect *link);
-int 	ft_not_in_file(t_lemin *lem, char *name);
+// int 	ft_not_in_file(t_lemin *lem, char *name);
 void 	ft_add_to_file(t_lemin *lem, char *name);
 void 	ft_init_file(t_lemin *lem);
-void 	ft_check_links(t_lemin *lem, t_room *room);
+// void 	ft_check_links(t_lemin *lem, t_room *room);
 
 
 /*
@@ -137,5 +141,6 @@ void 	ft_print_hashtab(t_lemin *lem);
 */
 void 	ft_link_room(t_lemin *lem);
 t_conect *ft_add_roomlink(char *name, t_conect *next);
+int 	ft_check_if_link(t_conect *link, char *str);
 
 #endif

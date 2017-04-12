@@ -2,7 +2,7 @@ NAME = lem-in
 
 CC = gcc
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -g -Wall -Wextra -Werror #-fsanitize=address
 
 LEMIN_S_PATH = lemin_src/
 LEMIN_O_PATH = lemin_obj/

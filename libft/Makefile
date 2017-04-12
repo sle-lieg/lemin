@@ -1,6 +1,6 @@
 NAME = libftprintf.a
 
-CC = gcc -Wall -Wextra -Werror
+CC = gcc -Wall -Wextra -Werror -g
 
 INC_LIB 	= -I ./inc/
 PATH_PRINTF = ./printf_src/

@@ -20,8 +20,8 @@ void 	ft_get_ants(t_lemin *lem)
 		ft_printf("Error\n");
 		exit(0);
 	}
-	ft_map_list(lem, line);
-	lem->nb_ants = ft_atoi(line);
+	else
+		lem->nb_ants = ft_atoi(line);
 }
 
 void 	ft_get_rooms(t_lemin *lem)
