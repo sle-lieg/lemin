@@ -41,7 +41,11 @@ void 	ft_init_lem(t_lemin *lem)
 	lem->end = NULL;
 	lem->lst_room = NULL;
 	lem->lst_link = NULL;
-	lem->lst_files = NULL;
+	
+	lem->way = NULL;
+	lem->room_file = NULL;
+	lem->last_roomfile = NULL;
+	// lem->lst_files = NULL;
 }
 
 void 	ft_print_room(t_lemin *lem)

@@ -40,6 +40,7 @@ void 	ft_add_rooms(t_lemin *lem, char *line)
 	}
 	else if (lem->cmd & END)
 	{
+
 		lem->end = ft_new_room(lem, line);
 		lem->cmd ^= END;
 	}

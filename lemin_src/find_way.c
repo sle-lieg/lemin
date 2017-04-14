@@ -14,34 +14,40 @@
 
 void 	ft_find_way(t_lemin *lem)
 {
-	ft_printf("##################### FIND WAY #################\n");
+	printf("##################### FIND WAY #################\n");
 
 	ft_init_file(lem);
 	ft_explore(lem, lem->start);
+	ft_print_file(lem);
+
 }
 
 void 	ft_explore(t_lemin *lem, t_room *room)
 {
 	t_room *tmp_room;
-	if (room)
-		ft_printf("[[%s]]\n", room->name);
+	// if (room)
+	// 	ft_printf("[[%s]]\n", room->name);
 
 	if (!room)
-		return ;
+		return ;	
 	if (!room->checked)
-	{		
+	{	
 		ft_add_to_file(lem, room->name);
 		room->checked = 1;
 	}	
 	if (room == lem->end)
 	{
-		ft_print_file(lem);
+
+		// ft_print_file(lem);
 		ft_new_file(lem);
+
 	}
 	if (!room->tmp_link)
 	{
 		room->checked = 0;
+
 		ft_pop_file(lem);
+
 		room->tmp_link = room->link;
 		if (lem->lst_files->room)
 		{
@@ -50,8 +56,13 @@ void 	ft_explore(t_lemin *lem, t_room *room)
 	}
 	else
 	{
+		printf("1111\n");
+
 		tmp_room = ft_find_room(lem, room->tmp_link);
+
 		room->tmp_link = room->tmp_link->next;
+		printf("2222\n");
+
 		if (!tmp_room->checked)
 		{
 			ft_explore(lem, tmp_room);
@@ -65,18 +76,38 @@ void 	ft_explore(t_lemin *lem, t_room *room)
 
 void 	ft_print_file(t_lemin *lem)
 {
+	t_file *tmp_file;
 	t_conect *tmp;
-	static int count = 0;
+	int count = 0;
 
-	tmp = lem->lst_files->room;
-	ft_printf("LINK[%d] : ", count++);
-	while (tmp)
+	tmp_file = lem->lst_files;
+	while (tmp_file)
 	{
-		ft_printf("%s->", tmp->name);
-		tmp = tmp->next;
+		printf("LINK[%d] : ", count++);
+		tmp = tmp_file->room;
+		while (tmp)
+		{
+			printf("%s->", tmp->name);
+			tmp = tmp->next;
+		}
+		printf("\n");
 	}
-	ft_printf("\n");
 }
+
+// void 	ft_print_file(t_lemin *lem)
+// {
+// 	t_conect *tmp;
+// 	static int count = 0;
+
+// 	tmp = lem->lst_files->room;
+// 	printf("LINK[%d] : ", count++);
+// 	while (tmp)
+// 	{
+// 		printf("%s->", tmp->name);
+// 		tmp = tmp->next;
+// 	}
+// 	printf("\n");
+// }
 
 void 	ft_pop_file(t_lemin *lem)
 {
@@ -113,7 +144,7 @@ t_room *ft_find_room(t_lemin *lem, t_conect *link)
 
 void 	ft_init_file(t_lemin *lem)
 {
-	if (!(lem->lst_files = malloc(sizeof(*lem->lst_files))))
+	if (!(lem->lst_files = (t_file *)malloc(sizeof(*lem->lst_files))))
 	{
 		perror("");
 		exit(EXIT_FAILURE);
@@ -127,7 +158,7 @@ void 	ft_add_to_file(t_lemin *lem, char *name)
 {
 	if (!lem->lst_files->room)
 	{
-		if (!(lem->lst_files->room = malloc(sizeof(t_conect))))
+		if (!(lem->lst_files->room = (t_conect *)malloc(sizeof(t_conect))))
 		{
 			perror("");
 			exit(EXIT_FAILURE);
@@ -138,7 +169,7 @@ void 	ft_add_to_file(t_lemin *lem, char *name)
 	}
 	else
 	{
-		if (!(lem->lst_files->last->next = malloc(sizeof(t_conect))))
+		if (!(lem->lst_files->last->next = (t_conect *)malloc(sizeof(t_conect))))
 		{
 			perror("");
 			exit(EXIT_FAILURE);
@@ -154,7 +185,7 @@ void 	ft_new_file(t_lemin *lem)
 	t_file *tmp;
 
 	tmp = lem->lst_files;
-	if (!(lem->lst_files = malloc(sizeof(*lem->lst_files))))
+	if (!(lem->lst_files = (t_file *)malloc(sizeof(*lem->lst_files))))
 	{
 		perror("");
 		exit(EXIT_FAILURE);
@@ -173,7 +204,7 @@ void 	ft_copy_files(t_file *new, t_conect *old)
 		tmp = new->room;
 		if (!tmp)
 		{
-			if (!(new->room = malloc(sizeof(*new->room))))
+			if (!(new->room = (t_conect *)malloc(sizeof(*new->room))))
 			{
 				perror("");
 				exit(EXIT_FAILURE);
@@ -182,7 +213,7 @@ void 	ft_copy_files(t_file *new, t_conect *old)
 		}
 		else
 		{
-			if (!(new->last->next = malloc(sizeof(*new->last))))
+			if (!(new->last->next = (t_conect *)malloc(sizeof(*new->last))))
 			{
 				perror("");
 				exit(EXIT_FAILURE);
