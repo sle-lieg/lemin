@@ -13,7 +13,8 @@ INC 	= -I inc/
 
 LIB 	= libftprintf.a
 
-LEMIN_SRC = lemin.c parsing.c pars_tools.c room_tools.c link_tools.c hash.c link.c find_way2.c
+LEMIN_SRC = lemin.c parsing.c pars_tools.c room_tools.c link_tools.c hash.c link.c find_way2.c\
+			crea_file.c crea_way.c
 LEMIN_OBJ = $(addprefix $(LEMIN_O_PATH), $(LEMIN_SRC:.c=.o))
 
 all: $(LIB) $(NAME)

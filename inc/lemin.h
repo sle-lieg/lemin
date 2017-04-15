@@ -117,11 +117,13 @@ void 	ft_add_way(t_lemin *lem, t_conect *tmp_f);
 int 	ft_co_to_end(t_lemin *lem);
 void 	ft_delete_dup_file(t_lemin *lem);
 void 	ft_crea_ways(t_lemin *lem);
+t_conect *ft_pop_way(t_lemin *lem);
+void 	ft_uncheck(t_lemin *lem, t_conect *room);
 
 /*
 ** /\/\/\/\/\ FIND_WAY.C /\/\/\/\/\
 */
-void 	ft_pop_file(t_lemin *lem);
+// void 	ft_pop_file(t_lemin *lem);
 
 void 	ft_find_way(t_lemin *lem);
 void 	ft_explore(t_lemin *lem, t_room *room);
