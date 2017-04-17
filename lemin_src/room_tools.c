@@ -22,7 +22,7 @@ int 	ft_is_room(t_lemin *lem, char *line)
 		exit(EXIT_FAILURE);
 	if (!split[0] || !split[1] || !split[2] || split[3] ||
 		*split[0] == 'L' || !ft_is_digit_str(split[1]) ||
-		!ft_is_digit_str(split[2]) || ft_room_exist(lem, line))
+		!ft_is_digit_str(split[2]) || ft_room_exist(lem, split[0]))
 	{
 		ft_free_split(split);
 		return (0);
@@ -35,12 +35,21 @@ void 	ft_add_rooms(t_lemin *lem, char *line)
 {
 	if (lem->cmd & START)
 	{
+		if (lem->start)
+		{
+			ft_printf("Error\n");
+			exit(EXIT_SUCCESS);
+		}
 		lem->start = ft_new_room(lem, line);
 		lem->cmd ^= START;
 	}
 	else if (lem->cmd & END)
 	{
-
+		if (lem->end)
+		{
+			ft_printf("Error\n");
+			exit(EXIT_SUCCESS);
+		}
 		lem->end = ft_new_room(lem, line);
 		lem->cmd ^= END;
 	}

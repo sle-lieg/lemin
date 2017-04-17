@@ -1,9 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   crea_way.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sle-lieg <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/04/17 13:23:40 by sle-lieg          #+#    #+#             */
+/*   Updated: 2017/04/17 13:23:42 by sle-lieg         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "lemin.h"
 
 void 	ft_crea_ways(t_lemin *lem)
 {
 	t_conect *tmp_f;
 
+	ft_print_file(lem);
 	while (lem->room_file)
 	{
 		ft_new_way(lem);
@@ -86,6 +99,7 @@ void 	ft_add_way(t_lemin *lem, t_conect *tmp_f)
 		exit(EXIT_FAILURE);
 	lem->way->last = lem->way->last->next;
 	lem->way->last->name = tmp_f->name;
+	lem->way->last->ant = 0;
 	lem->way->last->next = NULL;
 }
 

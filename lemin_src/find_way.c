@@ -12,48 +12,23 @@
 
 #include "lemin.h"
 
-void 	ft_print_way(t_lemin *lem)
-{
-	t_file *tmp_file;
-	t_conect *tmp;
-	int count = 0;
-
-	tmp_file = lem->way;
-	while (tmp_file)
-	{
-		ft_printf("LINK[%d] : ", count++);
-		tmp = tmp_file->room;
-		while (tmp)
-		{
-			ft_printf("%s->", tmp->name);
-			tmp = tmp->next;
-		}
-		ft_printf("\n");
-		tmp_file = tmp_file->next;
-	}
-}
-
-void	ft_print_file(t_lemin *lem)
-{
-	t_conect *tmp;
-
-	tmp = lem->room_file;
-	while (tmp)
-	{
-		ft_printf("%s - ", tmp->name);
-		tmp = tmp->next;
-	}
-	ft_printf("\n");
-
-}
-
 void 	ft_find_way(t_lemin *lem)
 {
 	ft_init_roomfile(lem);
 	ft_crea_file(lem);
 	ft_uncheck_file(lem);
-	ft_crea_ways(lem);
-	ft_print_way(lem);
+	if (ft_start_end_link(lem))
+		ft_direct_way(lem);
+	else
+	{
+		ft_crea_ways(lem);
+		if (!lem->way->next)
+		{
+			ft_printf("Error\n");
+			exit(0);
+		}
+		// ft_print_way(lem);
+	}
 }
 
 t_room *ft_find_room(t_lemin *lem, t_conect *link)
@@ -66,4 +41,31 @@ t_room *ft_find_room(t_lemin *lem, t_conect *link)
 	while (ft_strcmp(link->name, tmp->name))
 		tmp = tmp->next;
 	return (tmp);
+}
+
+void 	ft_direct_way(t_lemin *lem)
+{
+	int ant;
+
+	ant = 1;
+	while (ant <= lem->nb_ants)
+	{
+		ft_printf("L%d-%s", ant, lem->end->name);
+		if (ant++ < lem->nb_ants)
+			ft_printf(" ");
+	}
+	ft_printf("\n");
+}
+
+int 	ft_start_end_link(t_lemin *lem)
+{
+	lem->start->tmp_link = lem->start->link;
+
+	while (lem->start->tmp_link)
+	{
+		if (!ft_strcmp(lem->start->tmp_link->name, lem->end->name))
+			return (1);
+		lem->start->tmp_link = lem->start->tmp_link->next;
+	}
+	return (0);
 }

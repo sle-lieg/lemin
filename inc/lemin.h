@@ -30,6 +30,7 @@ typedef struct 	s_link
 typedef struct 	s_conect
 {
 	char 				*name;
+	int 				ant;
 	struct s_conect 	*next;
 }				t_conect;
 
@@ -70,6 +71,7 @@ typedef struct 	s_lemin
 	int 				nb_ants;
 	int 				nb_room;
 	int 				cmd;
+	int 				end_ants;
 	t_room				**tab_hash;
 	t_room 				*start;
 	t_room 				*end;
@@ -84,15 +86,11 @@ typedef struct 	s_lemin
 
 }				t_lemin;
 
-void 	ft_print_room(t_lemin *lem);
-void 	ft_print_way(t_lemin *lem);
-void 	ft_print_file(t_lemin *lem);
-
-
 /*
 ** /\/\/\/\/\ LEMIN.C /\/\/\/\/\
 */
 void 	ft_init_lem(t_lemin *lem);
+void 	ft_delete_extra(t_lemin *lem);
 
 /*
 ** /\/\/\/\/\ PARSING.C /\/\/\/\/\
@@ -104,37 +102,47 @@ void 	ft_get_links(t_lemin *lem);
 void 	ft_get_cmd(t_lemin *lem, char *line);
 
 /*
-** /\/\/\/\/\ FIND_WAY2.C /\/\/\/\/\
+** /\/\/\/\/\ PRINT_TOOLS.C /\/\/\/\/\
 */
-void	ft_uncheck_file(t_lemin *lem);
-void	ft_init_roomfile(t_lemin *lem);
+void 	ft_print_room(t_lemin *lem);
+void 	ft_print_way(t_lemin *lem);
+void 	ft_print_file(t_lemin *lem);
+
+/*
+** /\/\/\/\/\ MOVE_ANTS.C /\/\/\/\/\
+*/
+void 	ft_move_ants(t_lemin *lem);
+void 	ft_print_ants(t_conect *way);
+void 	ft_move(t_lemin *lem, t_file *way, int n_ant);
+
+/*
+** /\/\/\/\/\ CREA_FILE.C /\/\/\/\/\
+*/
+void 	ft_crea_file(t_lemin *lem);
 int 	ft_is_checked(t_lemin *lem, t_conect *room);
 void 	ft_add_to_file(t_lemin *lem, t_conect *room);
-void 	ft_crea_file(t_lemin *lem);
-void 	ft_new_way(t_lemin *lem);
+void	ft_init_roomfile(t_lemin *lem);
+void	ft_uncheck_file(t_lemin *lem);
+
+/*
+** /\/\/\/\/\ CREA_WAY.C /\/\/\/\/\
+*/
+void 	ft_crea_ways(t_lemin *lem);
+void 	ft_uncheck(t_lemin *lem, t_conect *room);
+t_conect *ft_pop_way(t_lemin *lem);
 int 	ft_is_conected(t_lemin *lem, t_conect *tmp_f);
 void 	ft_add_way(t_lemin *lem, t_conect *tmp_f);
+void 	ft_new_way(t_lemin *lem);
 int 	ft_co_to_end(t_lemin *lem);
-void 	ft_delete_dup_file(t_lemin *lem);
-void 	ft_crea_ways(t_lemin *lem);
-t_conect *ft_pop_way(t_lemin *lem);
-void 	ft_uncheck(t_lemin *lem, t_conect *room);
+
 
 /*
 ** /\/\/\/\/\ FIND_WAY.C /\/\/\/\/\
 */
-// void 	ft_pop_file(t_lemin *lem);
-
 void 	ft_find_way(t_lemin *lem);
-void 	ft_explore(t_lemin *lem, t_room *room);
-void 	ft_new_file(t_lemin *lem);
-void 	ft_copy_files(t_file *new, t_conect *old);
 t_room *ft_find_room(t_lemin *lem, t_conect *link);
-// int 	ft_not_in_file(t_lemin *lem, char *name);
-void 	ft_add_to_file(t_lemin *lem, t_conect *room);
-void 	ft_init_file(t_lemin *lem);
-// void 	ft_check_links(t_lemin *lem, t_room *room);
-
+void 	ft_direct_way(t_lemin *way);
+int 	ft_start_end_link(t_lemin *lem);
 
 /*
 ** /\/\/\/\/\ ROOM_TOOLS.C /\/\/\/\/\

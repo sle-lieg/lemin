@@ -4,6 +4,11 @@ void 	ft_parse_lem(t_lemin *lem)
 {
 	ft_get_ants(lem);
 	ft_get_rooms(lem);
+	if (!lem->start || !lem->end)
+	{
+		ft_printf("Error\n");
+		exit(0);
+	}
 	ft_get_links(lem);
 	ft_crea_hash_table(lem);
 	ft_link_room(lem);
@@ -14,14 +19,21 @@ void 	ft_get_ants(t_lemin *lem)
 	char *line;
 
 	line = NULL;
-	if (ft_get_next_line(0, &line) < 0 || *line == '-' ||
-		!ft_is_digit_str(line) || !ft_is_int_size(line))
+	while (ft_get_next_line(0, &line) > 0)
 	{
-		ft_printf("Error\n");
-		exit(0);
+		if (*line == '#')
+			;
+		else if (*line == '-' || !ft_is_digit_str(line) || !ft_is_int_size(line))
+		{
+			ft_printf("Error\n");
+			exit(0);
+		}
+		else
+		{
+			lem->nb_ants = ft_atoi(line);
+			return ;
+		}
 	}
-	else
-		lem->nb_ants = ft_atoi(line);
 }
 
 void 	ft_get_rooms(t_lemin *lem)
@@ -46,7 +58,10 @@ void 	ft_get_rooms(t_lemin *lem)
 			break ;
 		}
 		else
-			break ;
+		{
+			ft_printf("Error\n");
+			exit(0);
+		}
 	}
 }
 
@@ -64,9 +79,16 @@ void 	ft_get_links(t_lemin *lem)
 		}
 		else if (*line == '#')
 			ft_map_list(lem, line);
-		// ft_get_cmd(lem, line);
 		else
-			break ;
+		{
+			ft_printf("Error\n");
+			exit(0);
+		}
+	}
+	if (!lem->lst_link)
+	{
+		ft_printf("Error\n");
+		exit(0);
 	}
 }
 
