@@ -13,20 +13,14 @@ void 	ft_crea_ways(t_lemin *lem)
 			if (ft_is_conected(lem, tmp_f))
 				ft_add_way(lem, tmp_f);
 			if (ft_co_to_end(lem))
-			{
-				// ft_print_way(lem);
-
-				// ft_add_way(lem, lem->end);
-				ft_print_file(lem);
-
-				ft_delete_dup_file(lem);
 				break ;
-			}
 			else if (!tmp_f->next)
 			{
 				if (!(tmp_f = ft_pop_way(lem)))
 					return ;
-				ft_print_way(lem);
+				if (!tmp_f->next)
+					if (!(tmp_f = ft_pop_way(lem)))
+						return ;
 			}
 			tmp_f = tmp_f->next;
 		}
@@ -48,7 +42,7 @@ t_conect *ft_pop_way(t_lemin *lem)
 
 	tmp_file = lem->room_file;
 	tmp_way = lem->way->room;
-	while (ft_strcmp(lem->last_roomfile->name, tmp_file->name))
+	while (ft_strcmp(lem->way->last->name, tmp_file->name))
 		tmp_file = tmp_file->next;
 	while (tmp_way->next && tmp_way->next != lem->way->last)
 		tmp_way = tmp_way->next;
@@ -64,38 +58,6 @@ t_conect *ft_pop_way(t_lemin *lem)
 	lem->way->last->next = NULL;
 	return (tmp_file);
 }
-
-// void 	ft_crea_ways(t_lemin *lem)
-// {
-// 	t_conect *tmp_f;
-
-// 	while (lem->room_file)
-// 	{
-// 		ft_new_way(lem);
-// 		tmp_f = lem->room_file;
-// 		while (tmp_f)
-// 		{
-// 			if (ft_is_conected(lem, tmp_f))
-// 				ft_add_way(lem, tmp_f);
-// 			if (ft_co_to_end(lem))
-// 			{
-// 				// ft_print_way(lem);
-
-// 				// ft_add_way(lem, lem->end);
-// 				ft_print_file(lem);
-
-// 				ft_delete_dup_file(lem);
-// 				break ;
-// 			}
-// 			else if (tmp_f->next)
-// 				tmp_f = tmp_f->next;
-// 			else
-// 			{			
-// 				return ;
-// 			}
-// 		}
-// 	}
-// }
 
 int 	ft_is_conected(t_lemin *lem, t_conect *tmp_f)
 {

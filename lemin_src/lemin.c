@@ -24,7 +24,7 @@ int 	main(int argc, char **argv)
 	}
 	ft_init_lem(&lem);
 	ft_parse_lem(&lem);
-	ft_print_room(&lem);
+	// ft_print_room(&lem);
 
 	ft_find_way(&lem);
 	// ft_destroy_lemin(&lem);
