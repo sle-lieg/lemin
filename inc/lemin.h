@@ -32,6 +32,7 @@ typedef struct 	s_conect
 	char 				*name;
 	int 				ant;
 	struct s_conect 	*next;
+	struct s_conect 	*prev;
 }				t_conect;
 
 typedef struct 	s_room
@@ -62,6 +63,7 @@ typedef struct 	s_pars_lst
 typedef struct 	s_file
 {
 	struct s_conect	*room;
+	struct s_conect	*to_print;
 	struct s_conect	*last;
 	struct s_file	*next;
 }				t_file;
@@ -112,8 +114,9 @@ void 	ft_print_file(t_lemin *lem);
 ** /\/\/\/\/\ MOVE_ANTS.C /\/\/\/\/\
 */
 void 	ft_move_ants(t_lemin *lem);
-void 	ft_print_ants(t_conect *way);
+void 	ft_print_ants(t_file *way);
 void 	ft_move(t_lemin *lem, t_file *way, int n_ant);
+void 	ft_set_to_print(t_file *way);
 
 /*
 ** /\/\/\/\/\ CREA_FILE.C /\/\/\/\/\

@@ -16,7 +16,7 @@ void 	ft_crea_ways(t_lemin *lem)
 {
 	t_conect *tmp_f;
 
-	ft_print_file(lem);
+	// ft_print_file(lem);
 	while (lem->room_file)
 	{
 		ft_new_way(lem);
@@ -97,6 +97,7 @@ void 	ft_add_way(t_lemin *lem, t_conect *tmp_f)
 {
 	if (!(lem->way->last->next = (t_conect *)malloc(sizeof(t_conect))))
 		exit(EXIT_FAILURE);
+	lem->way->last->next->prev = lem->way->last;
 	lem->way->last = lem->way->last->next;
 	lem->way->last->name = tmp_f->name;
 	lem->way->last->ant = 0;
@@ -115,7 +116,9 @@ void 	ft_new_way(t_lemin *lem)
 		exit(EXIT_FAILURE);
 	lem->way->last = lem->way->room;
 	lem->way->room->name = lem->start->name;
+	lem->way->room->ant = 0;
 	lem->way->room->next = NULL;
+	lem->way->room->prev = NULL;
 }
 
 int 	ft_co_to_end(t_lemin *lem)

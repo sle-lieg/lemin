@@ -47,7 +47,9 @@ t_conect *ft_add_roomlink(char *name, t_conect *next)
 		exit(EXIT_FAILURE);
 	}
 	new->name = name;
+	new->ant = 0;
 	new->next = next;
+	new->prev = NULL;
 	return (new);
 }
 
