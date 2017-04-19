@@ -6,16 +6,16 @@
 /*   By: sle-lieg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/17 13:23:28 by sle-lieg          #+#    #+#             */
-/*   Updated: 2017/04/17 13:23:29 by sle-lieg         ###   ########.fr       */
+/*   Updated: 2017/04/19 14:10:04 by sle-lieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-void 	ft_crea_file(t_lemin *lem)
+void	ft_crea_file(t_lemin *lem)
 {
-	t_conect *tmp_file;
-	t_room *tmp_room;
+	t_conect	*tmp_file;
+	t_room		*tmp_room;
 
 	tmp_file = lem->room_file;
 	lem->start->checked = 1;
@@ -33,7 +33,7 @@ void 	ft_crea_file(t_lemin *lem)
 	}
 }
 
-int 	ft_is_checked(t_lemin *lem, t_conect *room)
+int		ft_is_checked(t_lemin *lem, t_conect *room)
 {
 	t_room *tmp;
 
@@ -44,7 +44,7 @@ int 	ft_is_checked(t_lemin *lem, t_conect *room)
 	return (0);
 }
 
-void 	ft_add_to_file(t_lemin *lem, t_conect *room)
+void	ft_add_to_file(t_lemin *lem, t_conect *room)
 {
 	if (!(lem->last_roomfile->next = (t_conect *)malloc(sizeof(t_conect))))
 		exit(EXIT_FAILURE);
@@ -64,8 +64,8 @@ void	ft_init_roomfile(t_lemin *lem)
 
 void	ft_uncheck_file(t_lemin *lem)
 {
-	t_room *tmp;
-	t_conect *tmp_file;
+	t_room		*tmp;
+	t_conect	*tmp_file;
 
 	tmp_file = lem->room_file;
 	while (tmp_file)

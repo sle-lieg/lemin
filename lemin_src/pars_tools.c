@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pars_tools.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sle-lieg <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/04/19 14:32:43 by sle-lieg          #+#    #+#             */
+/*   Updated: 2017/04/19 14:32:47 by sle-lieg         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "lemin.h"
 
-void 	ft_map_list(t_lemin *lem, char *line)
+void	ft_map_list(t_lemin *lem, char *line)
 {
 	static t_pars_lst *last = NULL;
 
@@ -22,9 +34,9 @@ void 	ft_map_list(t_lemin *lem, char *line)
 	}
 }
 
-void 	ft_destroy_lemin(t_lemin *lem)
+void	ft_destroy_lemin(t_lemin *lem)
 {
-	t_room 		*tmp_r;
+	t_room		*tmp_r;
 	t_pars_lst	*tmp_p;
 
 	tmp_p = lem->pars_map;

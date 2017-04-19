@@ -6,17 +6,17 @@
 /*   By: sle-lieg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/08 16:29:36 by sle-lieg          #+#    #+#             */
-/*   Updated: 2017/04/08 16:29:38 by sle-lieg         ###   ########.fr       */
+/*   Updated: 2017/04/19 14:18:58 by sle-lieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-void 	ft_crea_hash_table(t_lemin *lem)
+void	ft_crea_hash_table(t_lemin *lem)
 {
-	t_room 	*tmp;
-	t_room 	*prev;
-	int 	index;
+	t_room	*tmp;
+	t_room	*prev;
+	int		index;
 
 	ft_init_hash(lem);
 	tmp = lem->lst_room;
@@ -28,14 +28,12 @@ void 	ft_crea_hash_table(t_lemin *lem)
 		tmp = tmp->next;
 		lem->tab_hash[index]->next = prev;
 	}
-
-	// ft_print_hashtab(lem);
 }
 
-void 	ft_print_hashtab(t_lemin *lem)
+void	ft_print_hashtab(t_lemin *lem)
 {
-	t_room *tmp;
-	int i;
+	t_room	*tmp;
+	int		i;
 
 	i = 0;
 	while (i < lem->nb_room)
@@ -52,12 +50,13 @@ void 	ft_print_hashtab(t_lemin *lem)
 	}
 }
 
-void 	ft_init_hash(t_lemin *lem)
+void	ft_init_hash(t_lemin *lem)
 {
 	int i;
 
 	i = 0;
-	if (!(lem->tab_hash = (t_room **)malloc(sizeof(*lem->tab_hash) * lem->nb_room)))
+	if (!(lem->tab_hash = (t_room **)malloc(sizeof(*lem->tab_hash) *
+			lem->nb_room)))
 	{
 		perror("");
 		exit(EXIT_FAILURE);
@@ -66,7 +65,7 @@ void 	ft_init_hash(t_lemin *lem)
 		lem->tab_hash[i++] = NULL;
 }
 
-int 	ft_hash(int nb_room, char *str)
+int		ft_hash(int nb_room, char *str)
 {
 	int key;
 	int i;

@@ -6,13 +6,13 @@
 /*   By: sle-lieg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/07 21:12:39 by sle-lieg          #+#    #+#             */
-/*   Updated: 2017/04/07 21:12:40 by sle-lieg         ###   ########.fr       */
+/*   Updated: 2017/04/19 14:31:25 by sle-lieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-int 	ft_is_room(t_lemin *lem, char *line)
+int		ft_is_room(t_lemin *lem, char *line)
 {
 	char **split;
 
@@ -31,13 +31,13 @@ int 	ft_is_room(t_lemin *lem, char *line)
 	return (1);
 }
 
-void 	ft_add_rooms(t_lemin *lem, char *line)
+void	ft_add_rooms(t_lemin *lem, char *line)
 {
 	if (lem->cmd & START)
 	{
 		if (lem->start)
 		{
-			ft_printf("Error\n");
+			ft_printf("Error : multiple Start rooms.\n");
 			exit(EXIT_SUCCESS);
 		}
 		lem->start = ft_new_room(lem, line);
@@ -47,7 +47,7 @@ void 	ft_add_rooms(t_lemin *lem, char *line)
 	{
 		if (lem->end)
 		{
-			ft_printf("Error\n");
+			ft_printf("Error : multiple End rooms.\n");
 			exit(EXIT_SUCCESS);
 		}
 		lem->end = ft_new_room(lem, line);
@@ -59,8 +59,8 @@ void 	ft_add_rooms(t_lemin *lem, char *line)
 
 t_room	*ft_new_room(t_lemin *lem, char *line)
 {
-	char 	**split;
-	t_room 	*tmp;
+	char	**split;
+	t_room	*tmp;
 
 	if (!(split = ft_strsplit(line, ' ')))
 		exit(EXIT_FAILURE);
@@ -80,7 +80,7 @@ t_room	*ft_new_room(t_lemin *lem, char *line)
 	return (lem->lst_room);
 }
 
-int 	ft_room_exist(t_lemin *lem, char *line)
+int		ft_room_exist(t_lemin *lem, char *line)
 {
 	t_room *tmp;
 

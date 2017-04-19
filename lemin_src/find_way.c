@@ -6,32 +6,26 @@
 /*   By: sle-lieg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/11 15:06:21 by sle-lieg          #+#    #+#             */
-/*   Updated: 2017/04/11 15:06:23 by sle-lieg         ###   ########.fr       */
+/*   Updated: 2017/04/19 14:16:44 by sle-lieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-void 	ft_find_way(t_lemin *lem)
+void	ft_find_way(t_lemin *lem)
 {
 	ft_init_roomfile(lem);
 	ft_crea_file(lem);
 	ft_uncheck_file(lem);
-	if (ft_start_end_link(lem))
-		ft_direct_way(lem);
-	else
+	ft_crea_ways(lem);
+	if (!lem->way->next)
 	{
-		ft_crea_ways(lem);
-		if (!lem->way->next)
-		{
-			ft_printf("Error\n");
-			exit(0);
-		}
-		// ft_print_way(lem);
+		ft_printf("Error : no possible way found.\n");
+		exit(0);
 	}
 }
 
-t_room *ft_find_room(t_lemin *lem, t_conect *link)
+t_room	*ft_find_room(t_lemin *lem, t_conect *link)
 {
 	t_room *tmp;
 
@@ -43,7 +37,7 @@ t_room *ft_find_room(t_lemin *lem, t_conect *link)
 	return (tmp);
 }
 
-void 	ft_direct_way(t_lemin *lem)
+void	ft_direct_way(t_lemin *lem)
 {
 	int ant;
 
@@ -57,10 +51,9 @@ void 	ft_direct_way(t_lemin *lem)
 	ft_printf("\n");
 }
 
-int 	ft_start_end_link(t_lemin *lem)
+int		ft_start_end_link(t_lemin *lem)
 {
 	lem->start->tmp_link = lem->start->link;
-
 	while (lem->start->tmp_link)
 	{
 		if (!ft_strcmp(lem->start->tmp_link->name, lem->end->name))

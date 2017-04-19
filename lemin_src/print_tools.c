@@ -12,6 +12,18 @@
 
 #include "lemin.h"
 
+void 	ft_print_map(t_lemin *lem)
+{
+	t_pars_lst *tmp;
+
+	tmp = lem->pars_map;
+	while (tmp)
+	{
+		ft_printf("%s\n", tmp->line);
+		tmp = tmp->next;
+	}
+}
+
 void 	ft_print_room(t_lemin *lem)
 {
 	int i;
@@ -67,7 +79,6 @@ void 	ft_print_way(t_lemin *lem)
 			ft_printf("%s->", tmp->name);
 			tmp = tmp->next;
 		}
-		ft_printf("%s", lem->end->name);
 		ft_printf("\n");
 		tmp_file = tmp_file->next;
 	}
