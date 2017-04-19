@@ -6,7 +6,7 @@
 /*   By: sle-lieg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/19 14:28:09 by sle-lieg          #+#    #+#             */
-/*   Updated: 2017/04/19 14:30:10 by sle-lieg         ###   ########.fr       */
+/*   Updated: 2017/04/19 19:14:45 by sle-lieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,7 @@ void	ft_parse_lem(t_lemin *lem)
 	ft_get_ants(lem);
 	ft_get_rooms(lem);
 	if (!lem->start || !lem->end)
-	{
-		ft_printf("Error : missing Start or End room.\n");
-		exit(0);
-	}
+		ft_error(1);
 	ft_get_links(lem);
 	ft_crea_hash_table(lem);
 	ft_link_room(lem);
@@ -34,25 +31,22 @@ void	ft_get_ants(t_lemin *lem)
 	while (ft_get_next_line(0, &line) > 0)
 	{
 		if (*line == '#')
-			;
+			ft_map_list(lem, line);
 		else if (*line == '-' || !ft_is_digit_str(line) ||
-				!ft_is_int_size(line))
+				!ft_is_int_size(line) || (*line == '0' && *(line + 1) == '\0'))
 		{
-			ft_printf("Error : ant value invalid.\n");
-			exit(0);
+			ft_strdel(&line);
+			ft_error(2);
 		}
 		else
 		{
 			lem->nb_ants = ft_atoi(line);
-			if (lem->nb_ants == 0)
-			{
-				ft_printf("Error : ant value invalid.\n");
-				exit(0);
-			}
 			ft_map_list(lem, line);
+			ft_strdel(&line);
 			return ;
 		}
 	}
+	ft_strdel(&line);
 }
 
 void	ft_get_rooms(t_lemin *lem)
@@ -74,14 +68,14 @@ void	ft_get_rooms(t_lemin *lem)
 		{
 			ft_map_list(lem, line);
 			ft_add_link(lem, line);
+			ft_strdel(&line);
 			break ;
 		}
 		else
-		{
-			ft_printf("Error : not enough data to create valid anthill.\n");
-			exit(0);
-		}
+			ft_error(3);
+		ft_strdel(&line);
 	}
+	ft_strdel(&line);
 }
 
 void	ft_get_links(t_lemin *lem)
@@ -99,13 +93,16 @@ void	ft_get_links(t_lemin *lem)
 		else if (*line == '#')
 			ft_map_list(lem, line);
 		else
+		{
+			if (line)
+				free(line);
 			break ;
+		}
+		ft_strdel(&line);
 	}
+	ft_strdel(&line);
 	if (!lem->lst_link)
-	{
-		ft_printf("Error : not enough data to create valid anthill.\n");
-		exit(0);
-	}
+		ft_error(3);
 }
 
 void	ft_get_cmd(t_lemin *lem, char *line)
@@ -114,19 +111,13 @@ void	ft_get_cmd(t_lemin *lem, char *line)
 	if (!ft_strcmp(line, "##start") && !lem->start)
 	{
 		if (lem->cmd & END)
-		{
-			ft_printf("Error : same Start and End room.\n");
-			exit(EXIT_FAILURE);
-		}
+			ft_error(4);
 		lem->cmd ^= START;
 	}
 	else if (!ft_strcmp(line, "##end") && !lem->end)
 	{
 		if (lem->cmd & START)
-		{
-			ft_printf("Error : same Start and End room.\n");
-			exit(EXIT_FAILURE);
-		}
+			ft_error(4);
 		lem->cmd ^= END;
 	}
 }

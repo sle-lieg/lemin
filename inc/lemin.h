@@ -127,6 +127,14 @@ void 	ft_add_way(t_lemin *lem, t_conect *tmp_f);
 void 	ft_new_way(t_lemin *lem);
 int 	ft_co_to_end(t_lemin *lem);
 
+/*
+** /\/\/\/\/\ DESTROY.C /\/\/\/\/\
+*/
+void	ft_destroy_lemin(t_lemin *lem);
+void 	ft_destroy_tab_hash(t_lemin *lem);
+void 	ft_free_roomlinks(t_conect *link);
+void 	ft_destroy_map(t_pars_lst *map);
+void 	ft_destroy_way(t_lemin *lem);
 
 /*
 ** /\/\/\/\/\ FIND_WAY.C /\/\/\/\/\
@@ -158,6 +166,7 @@ t_conect *ft_pop_way(t_lemin *lem);
 void 	ft_map_list(t_lemin *lem, char *line);
 void 	ft_destroy_lemin(t_lemin *lem);
 void 	ft_destroy_links(t_link *tmp_l);
+void 	ft_error(int code);
 
 /*
 ** /\/\/\/\/\ HASH.C /\/\/\/\/\

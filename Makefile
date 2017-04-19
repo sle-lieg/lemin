@@ -2,7 +2,7 @@ NAME = lem-in
 
 CC = gcc
 
-FLAGS = -g -Wall -Wextra -Werror #-fsanitize=address
+FLAGS = -g -Wall -Wextra -Werror -fsanitize=address
 
 LEMIN_S_PATH = lemin_src/
 LEMIN_O_PATH = lemin_obj/
@@ -14,7 +14,7 @@ INC 	= -I inc/
 LIB 	= libftprintf.a
 
 LEMIN_SRC = lemin.c parsing.c pars_tools.c room_tools.c link_tools.c hash.c link.c find_way.c\
-			crea_file.c crea_way.c print_tools.c move_ants.c
+			crea_file.c crea_way.c print_tools.c move_ants.c destroy.c
 LEMIN_OBJ = $(addprefix $(LEMIN_O_PATH), $(LEMIN_SRC:.c=.o))
 
 all: $(LIB) $(NAME)

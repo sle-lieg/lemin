@@ -67,6 +67,7 @@ void	ft_init_lem(t_lemin *lem)
 	lem->nb_room = 0;
 	lem->cmd = 0;
 	lem->end_ants = 0;
+	lem->tab_hash = NULL;
 	lem->pars_map = NULL;
 	lem->start = NULL;
 	lem->end = NULL;

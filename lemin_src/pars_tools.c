@@ -6,7 +6,7 @@
 /*   By: sle-lieg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/19 14:32:43 by sle-lieg          #+#    #+#             */
-/*   Updated: 2017/04/19 14:32:47 by sle-lieg         ###   ########.fr       */
+/*   Updated: 2017/04/19 19:09:31 by sle-lieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,32 +34,24 @@ void	ft_map_list(t_lemin *lem, char *line)
 	}
 }
 
-void	ft_destroy_lemin(t_lemin *lem)
+void	ft_error(int code)
 {
-	t_room		*tmp_r;
-	t_pars_lst	*tmp_p;
-
-	tmp_p = lem->pars_map;
-	tmp_r = lem->lst_room;
-	// while (tmp_r)
-	// {
-	// 	// ft_destroy_links(tmp_r->link);
-	// 	free(tmp_r->name);
-	// 	lem->lst_room = lem->lst_room->next;
-	// 	free(tmp_r);
-	// 	tmp_r = lem->lst_room;
-	// }
-	while (tmp_p)
-	{
-		free(tmp_p->line);
-		lem->pars_map = lem->pars_map->next;
-		free(tmp_p);
-		tmp_p = lem->pars_map;
-	}
-	ft_destroy_links(lem->lst_link);
+	if (code == 1)
+		ft_printf("Error : missing Start or End room.\n");
+	else if (code == 2)
+		ft_printf("Error : ant value invalid.\n");
+	else if (code == 3)
+		ft_printf("Error : not enough data to create valid anthill.\n");
+	else if (code == 4)
+		ft_printf("Error : same Start and End room.\n");
+	else if (code == 5)
+		ft_printf("Error : multiple Start rooms.\n");
+	else if (code == 6)
+		ft_printf("Error : multiple End rooms.\n");
+	exit(EXIT_FAILURE);
 }
 
-void 	ft_destroy_links(t_link *tmp_l)
+void	ft_destroy_links(t_link *tmp_l)
 {
 	t_link *start;
 

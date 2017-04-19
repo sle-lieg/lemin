@@ -6,7 +6,7 @@
 /*   By: sle-lieg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/07 21:12:39 by sle-lieg          #+#    #+#             */
-/*   Updated: 2017/04/19 14:31:25 by sle-lieg         ###   ########.fr       */
+/*   Updated: 2017/04/19 19:16:03 by sle-lieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,20 +36,14 @@ void	ft_add_rooms(t_lemin *lem, char *line)
 	if (lem->cmd & START)
 	{
 		if (lem->start)
-		{
-			ft_printf("Error : multiple Start rooms.\n");
-			exit(EXIT_SUCCESS);
-		}
+			ft_error(5);
 		lem->start = ft_new_room(lem, line);
 		lem->cmd ^= START;
 	}
 	else if (lem->cmd & END)
 	{
 		if (lem->end)
-		{
-			ft_printf("Error : multiple End rooms.\n");
-			exit(EXIT_SUCCESS);
-		}
+			ft_error(6);
 		lem->end = ft_new_room(lem, line);
 		lem->cmd ^= END;
 	}
