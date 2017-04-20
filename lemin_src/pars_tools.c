@@ -48,6 +48,8 @@ void	ft_error(int code)
 		ft_printf("Error : multiple Start rooms.\n");
 	else if (code == 6)
 		ft_printf("Error : multiple End rooms.\n");
+	else if (code == 7)
+		ft_printf("usage : ./lem-in [-c -h] [< file]\n");
 	exit(EXIT_FAILURE);
 }
 

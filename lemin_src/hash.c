@@ -36,13 +36,20 @@ void	ft_print_hashtab(t_lemin *lem)
 	int		i;
 
 	i = 0;
+	ft_printf("\n{blue}++++++++++ HASH_TABLE ++++++++++{eoc}\n");
 	while (i < lem->nb_room)
 	{
 		tmp = lem->tab_hash[i];
-		ft_printf("%d : ", i);
+		if (lem->cmd & G)
+			ft_printf("{green}HASH_TAB[{red}%d{green}]{eoc} : ", i);
+		else
+			ft_printf("HASH_TAB[%d] : ", i);
 		while (tmp)
 		{
-			ft_printf("%s->", tmp->name);
+			if (lem->cmd & G)
+				ft_printf("{yellow}%s{eoc}->", tmp->name);
+			else
+				ft_printf("%s->", tmp->name);
 			tmp = tmp->next;
 		}
 		ft_printf("\n");

@@ -16,13 +16,9 @@ int		main(int argc, char **argv)
 {
 	t_lemin lem;
 
-	(void)argv;
-	if (argc > 1)
-	{
-		ft_printf("Error : no argument nedded\n");
-		return (0);
-	}
 	ft_init_lem(&lem);
+	if (argc > 1)
+		ft_options(&lem, argc, argv);
 	ft_parse_lem(&lem);
 	if (ft_start_end_link(&lem))
 	{
@@ -34,10 +30,38 @@ int		main(int argc, char **argv)
 		ft_find_way(&lem);
 		ft_delete_extra(&lem);
 		ft_print_map(&lem);
+		ft_print_options(&lem);
 		ft_move_ants(&lem);
+		if (lem.cmd & N)
+			ft_printf("\nturns needed : |{green}%d{eoc}|\n", lem.nb_move - 1);
 	}
 	ft_destroy_lemin(&lem);
 	return (0);
+}
+
+void 	ft_options(t_lemin *lem, int argc, char **argv)
+{
+	int i;
+
+	while (--argc > 0)
+	{
+		i = 0;
+		if (argv[argc][0] != '-')
+			ft_error(7);
+		while (argv[argc][++i])
+		{
+			if (argv[argc][i] == 'c')
+				lem->cmd ^= C;
+			else if (argv[argc][i] == 'h')
+				lem->cmd ^= H;
+			else if (argv[argc][i] == 'g')
+				lem->cmd ^= G;
+			else if (argv[argc][i] == 'n')
+				lem->cmd ^= N;
+			else
+				ft_error(7);
+		}
+	}
 }
 
 void	ft_delete_extra(t_lemin *lem)
@@ -65,6 +89,7 @@ void	ft_init_lem(t_lemin *lem)
 {
 	lem->nb_ants = 0;
 	lem->nb_room = 0;
+	lem->nb_move = 0;
 	lem->cmd = 0;
 	lem->end_ants = 0;
 	lem->tab_hash = NULL;

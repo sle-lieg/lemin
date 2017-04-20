@@ -12,98 +12,72 @@
 
 #include "libft.h"
 
-static char		**ft_inittab2(char **ptr, const char *s, char c)
+static int	ft_count_words(const char *s, char c)
 {
+	int nb;
 	int i;
-	int j;
-	int dim;
 
+	nb = 0;
 	i = 0;
-	j = 0;
-	while (s && s[i])
-	{
-		dim = 0;
-		while (s[i] != c && s[i])
-		{
-			dim++;
-			i++;
-		}
-		if (dim)
-		{
-			ptr[j] = (char *)malloc(sizeof(char) * dim + 1);
-			if (!ptr[j])
-				return (NULL);
-			j++;
-		}
-		if (s[i])
-			i++;
-	}
-	return (ptr);
-}
-
-static char		**ft_inittab1(const char *s, char c)
-{
-	int		i;
-	int		count;
-	char	**tab;
-
-	count = 0;
-	i = 0;
-	while (s && s[i])
+	while (s[i])
 	{
 		if (s[i] != c && (s[i + 1] == c || !s[i + 1]))
-			++count;
-		++i;
+			nb++;
+		i++;
 	}
-	tab = (char **)malloc(sizeof(*tab) * count + 1);
-	if (!tab)
-		return (NULL);
-	tab[count] = NULL;
-	ft_inittab2(tab, s, c);
-	if (!tab)
-		return (NULL);
-	return (tab);
+	return (nb);
 }
 
-static void		ft_fillarray(char **tab, const char *s, char c)
+static int	ft_size_word(const char *s, char c, int *j)
+{
+	int nb;
+
+	nb = 0;
+	while (s[*j] == c)
+		(*j)++;
+	while (s[*j] && s[*j] != c)
+	{
+		(*j)++;
+		nb++;
+	}
+	return (nb);
+}
+
+static void	ft_fillarray(char **split, const char *s, char c)
 {
 	int i;
 	int j;
-	int p;
+	int nb_char;
 
 	i = 0;
 	j = 0;
-	p = 0;
-	while (s && s[i])
+	nb_char = 0;
+	while (split[i])
 	{
-		while (s[i] == c && s[i])
-		{
-			p = 0;
-			i++;
-		}
-		while (s[i] != c && s[i])
-		{
-			tab[j][p] = s[i];
-			p++;
-			i++;
-		}
-		if (tab[j])
-			tab[j][p] = '\0';
-		j++;
+		nb_char = ft_size_word(s, c, &j);
+		if (!(split[i] = (char *)malloc(sizeof(**split) * (nb_char + 1))))
+			exit(EXIT_FAILURE);
+		split[i][nb_char] = '\0';
+		ft_strncpy(split[i], s + (j - nb_char), nb_char);
+		i++;
 	}
 }
 
-char			**ft_strsplit(const char *s, char c)
+char 		**ft_strsplit(const char *s, char c)
 {
-	int		i;
-	int		pos;
-	char	**tab;
+	char 	**split;
+	int 	nb_words;
+	int 	i;
+	int 	j;
 
-	pos = 0;
+	j = 0;
 	i = 0;
-	tab = ft_inittab1(s, c);
-	if (!tab)
+	if (!s || c < 32 || c > 126)
 		return (NULL);
-	ft_fillarray(tab, s, c);
-	return (tab);
+	nb_words = ft_count_words(s, c);
+	if (!(split = (char **)malloc(sizeof(*split) * (nb_words + 1))))
+		exit(EXIT_FAILURE);
+	split[nb_words] = NULL;
+	ft_fillarray(split, s, c);
+	return (split);
 }

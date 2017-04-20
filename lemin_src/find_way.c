@@ -42,13 +42,16 @@ void	ft_direct_way(t_lemin *lem)
 	int ant;
 
 	ant = 1;
+	ft_print_options(lem);
+	ft_printf("\n{blue}++++++++++ LEMINS_TRAVEL ++++++++++{eoc}\n");
 	while (ant <= lem->nb_ants)
 	{
-		ft_printf("L%d-%s", ant, lem->end->name);
-		if (ant++ < lem->nb_ants)
-			ft_printf(" ");
+		ft_print_anthill(lem, ant, lem->end->name);
+		ant++;
 	}
 	ft_printf("\n");
+	if (lem->cmd & N)
+		ft_printf("\nturns needed : |{green}1{eoc}|\n");
 }
 
 int		ft_start_end_link(t_lemin *lem)

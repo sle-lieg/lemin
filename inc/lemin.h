@@ -19,6 +19,10 @@
 
 # define START 0x1
 # define END 0x2
+# define C 0x4
+# define H 0x8
+# define G 0x10
+# define N 0x20
 
 typedef struct 	s_link
 {
@@ -64,6 +68,7 @@ typedef struct 	s_lemin
 {
 	int 				nb_ants;
 	int 				nb_room;
+	int 				nb_move;
 	int 				cmd;
 	int 				end_ants;
 	t_room				**tab_hash;
@@ -83,6 +88,7 @@ typedef struct 	s_lemin
 */
 void 					ft_init_lem(t_lemin *lem);
 void 					ft_delete_extra(t_lemin *lem);
+void 					ft_options(t_lemin *lem, int argc, char **argv);
 
 /*
 ** /\/\/\/\/\ PARSING.C /\/\/\/\/\
@@ -96,16 +102,16 @@ void 					ft_get_cmd(t_lemin *lem, char *line);
 /*
 ** /\/\/\/\/\ PRINT_TOOLS.C /\/\/\/\/\
 */
-void 					ft_print_room(t_lemin *lem);
 void 					ft_print_way(t_lemin *lem);
-void 					ft_print_file(t_lemin *lem);
 void 					ft_print_map(t_lemin *lem);
+void				 	ft_print_options(t_lemin *lem);
+void 					ft_print_anthill(t_lemin *lem, int ant, char *name);
 
 /*
 ** /\/\/\/\/\ MOVE_ANTS.C /\/\/\/\/\
 */
 void 					ft_move_ants(t_lemin *lem);
-void 					ft_print_ants(t_file *way);
+void 					ft_print_ants(t_lemin *lem, t_file *way);
 void 					ft_move(t_lemin *lem, t_file *way, int n_ant);
 void 					ft_set_to_print(t_file *way);
 

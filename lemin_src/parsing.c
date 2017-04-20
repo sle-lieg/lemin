@@ -94,8 +94,7 @@ void	ft_get_links(t_lemin *lem)
 			ft_map_list(lem, line);
 		else
 		{
-			if (line)
-				free(line);
+			ft_strdel(&line);
 			break ;
 		}
 		ft_strdel(&line);

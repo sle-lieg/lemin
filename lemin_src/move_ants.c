@@ -18,6 +18,7 @@ void	ft_move_ants(t_lemin *lem)
 	int		ant;
 
 	ant = 1;
+	ft_printf("\n{blue}++++++++++ LEMINS_TRAVEL ++++++++++{eoc}");
 	while (lem->end_ants < lem->nb_ants)
 	{
 		tmp_way = lem->way;
@@ -29,13 +30,16 @@ void	ft_move_ants(t_lemin *lem)
 				ft_move(lem, tmp_way, 0);
 			tmp_way = tmp_way->next;
 		}
-		ft_print_ants(lem->way);
+		ft_print_ants(lem, lem->way);
 		if (lem->end_ants < lem->nb_ants)
+		{	
 			ft_printf("\n");
+			lem->nb_move++;
+		}
 	}
 }
 
-void	ft_print_ants(t_file *way)
+void	ft_print_ants(t_lemin *lem, t_file *way)
 {
 	int		loop;
 	t_file	*tmp_way;
@@ -50,8 +54,7 @@ void	ft_print_ants(t_file *way)
 		{
 			if (tmp_way->to_print && tmp_way->to_print->prev &&
 					tmp_way->to_print->ant)
-				ft_printf("L%d-%s ", tmp_way->to_print->ant,
-						tmp_way->to_print->name);
+				ft_print_anthill(lem, tmp_way->to_print->ant, tmp_way->to_print->name);
 			if (tmp_way->to_print)
 				tmp_way->to_print = tmp_way->to_print->prev;
 			if (tmp_way->to_print && tmp_way->to_print->ant)

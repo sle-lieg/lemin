@@ -12,6 +12,27 @@
 
 #include "lemin.h"
 
+void 	ft_print_anthill(t_lemin *lem, int ant, char *name)
+{
+	if (lem->cmd & G)
+	{
+		if (ant % 6 == 0)
+			ft_printf("{red}L%d{eoc}-{cyan}%s{eoc} ", ant, name);
+		else if (ant % 6 == 1)
+			ft_printf("{green}L%d{eoc}-{cyan}%s{eoc} ", ant, name);
+		else if (ant % 6 == 2)
+			ft_printf("{yellow}L%d{eoc}-{cyan}%s{eoc} ", ant, name);
+		else if (ant % 6 == 3)
+			ft_printf("{blue}L%d{eoc}-{cyan}%s{eoc} ", ant, name);
+		else if (ant % 6 == 4)
+			ft_printf("{purple}L%d{eoc}-{cyan}%s{eoc} ", ant, name);
+		else if (ant % 6 == 5)
+			ft_printf("{grey}L%d{eoc}-{cyan}%s{eoc} ", ant, name);
+	}
+	else
+		ft_printf("L%d-%s ", ant, name);
+}
+
 void 	ft_print_map(t_lemin *lem)
 {
 	t_pars_lst *tmp;
@@ -24,43 +45,12 @@ void 	ft_print_map(t_lemin *lem)
 	}
 }
 
-void 	ft_print_room(t_lemin *lem)
+void 	ft_print_options(t_lemin *lem)
 {
-	int i;
-	t_pars_lst *tmp2;
-	t_conect *tmp3;
-
-	i = 0;
-	tmp2 = lem->pars_map;
-	ft_printf("nb room = %d\n", lem->nb_room);
-	ft_printf("nb ants = %d\n", lem->nb_ants);
-	ft_printf("PARS_MAP\n");
-	while (tmp2)
-	{
-		ft_printf("%s\n", tmp2->line);
-		tmp2 = tmp2->next;
-	}
-	ft_printf("\nLST_ROOM\n");
-	if (lem->start)
-		ft_printf("start = %s %d %d\n", lem->start->name, lem->start->x, lem->start->y);
-	if (lem->end)
-		ft_printf("end = %s %d %d\n", lem->end->name, lem->end->x, lem->end->y);
-	while (i < lem->nb_room)
-	{
-		if (lem->tab_hash[i])
-		{
-			tmp3 = lem->tab_hash[i]->link;
-			ft_printf("%s %d %d\n", lem->tab_hash[i]->name, lem->tab_hash[i]->x, lem->tab_hash[i]->y);
-			while (tmp3)
-			{
-				ft_printf("%s->", tmp3->name);
-				tmp3 = tmp3->next;
-			}
-			ft_printf("\n");
-
-		}
-		i++;
-	}
+	if (lem->cmd & H)
+		ft_print_hashtab(lem);
+	if (lem->cmd & C)
+		ft_print_way(lem);
 }
 
 void 	ft_print_way(t_lemin *lem)
@@ -70,30 +60,24 @@ void 	ft_print_way(t_lemin *lem)
 	int count = 0;
 
 	tmp_file = lem->way;
+	tmp_file ? ft_printf("\n{blue}++++++++++ WAY ++++++++++{eoc}\n") : 0;
 	while (tmp_file)
 	{
-		ft_printf("LINK[%d] : ", count++);
+		if (lem->cmd & G)
+			ft_printf("{green}LINK[{red}%d{green}]{eoc} : ", count++);
+		else
+			ft_printf("LINK[%d] : ", count++);
 		tmp = tmp_file->room;
 		while (tmp)
 		{
-			ft_printf("%s->", tmp->name);
+			if (lem->cmd & G)
+				ft_printf("{yellow}%s{eoc}", tmp->name);
+			else
+				ft_printf("%s", tmp->name);
 			tmp = tmp->next;
+			tmp	? ft_printf("->") : 0;
 		}
 		ft_printf("\n");
 		tmp_file = tmp_file->next;
 	}
-}
-
-void	ft_print_file(t_lemin *lem)
-{
-	t_conect *tmp;
-
-	tmp = lem->room_file;
-	while (tmp)
-	{
-		ft_printf("%s - ", tmp->name);
-		tmp = tmp->next;
-	}
-	ft_printf("\n");
-
 }
