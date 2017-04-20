@@ -6,7 +6,7 @@
 /*   By: sle-lieg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/09 15:31:59 by sle-lieg          #+#    #+#             */
-/*   Updated: 2017/04/07 16:59:06 by sle-lieg         ###   ########.fr       */
+/*   Updated: 2017/04/20 18:21:04 by sle-lieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,13 @@ int				ft_atoi(const char *str);
 long			ft_atoil(const char *str);
 void			ft_bzero(void *s, size_t n);
 int				ft_count_n(unsigned int n);
-int 			ft_count_char(char *str, char c);
+int				ft_count_char(char *str, char c);
 t_dlist			*ft_d_lstnew(void const *content, size_t content_size);
 void			ft_d_lstaddfront(t_dlist **alst, t_dlist *newl);
 void			ft_d_lstaddend(t_dlist **alst, t_dlist *newl);
 void			ft_d_lstdel(t_dlist **alst);
 void			ft_d_lstdelone(t_dlist **alst);
-void 			ft_free_split(char **split);
+void			ft_free_split(char **split);
 int				ft_get_next_line(const int fd, char **str);
 int				ft_is_digit_str(char *str);
 int				ft_is_int_size(char *arg);

@@ -6,13 +6,13 @@
 /*   By: sle-lieg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/07 16:55:44 by sle-lieg          #+#    #+#             */
-/*   Updated: 2017/04/07 16:58:24 by sle-lieg         ###   ########.fr       */
+/*   Updated: 2017/04/20 18:19:25 by sle-lieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void 	ft_free_split(char **split)
+void	ft_free_split(char **split)
 {
 	int i;
 
@@ -22,5 +22,5 @@ void 	ft_free_split(char **split)
 		while (split[i])
 			free(split[i++]);
 		free(split);
-	}	
+	}
 }

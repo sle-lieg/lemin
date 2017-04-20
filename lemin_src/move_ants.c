@@ -6,7 +6,7 @@
 /*   By: sle-lieg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/17 15:35:57 by sle-lieg          #+#    #+#             */
-/*   Updated: 2017/04/19 14:26:47 by sle-lieg         ###   ########.fr       */
+/*   Updated: 2017/04/20 18:02:20 by sle-lieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	ft_move_ants(t_lemin *lem)
 		}
 		ft_print_ants(lem, lem->way);
 		if (lem->end_ants < lem->nb_ants)
-		{	
+		{
 			ft_printf("\n");
 			lem->nb_move++;
 		}
@@ -54,7 +54,8 @@ void	ft_print_ants(t_lemin *lem, t_file *way)
 		{
 			if (tmp_way->to_print && tmp_way->to_print->prev &&
 					tmp_way->to_print->ant)
-				ft_print_anthill(lem, tmp_way->to_print->ant, tmp_way->to_print->name);
+				ft_print_anthill(lem, tmp_way->to_print->ant,
+					tmp_way->to_print->name);
 			if (tmp_way->to_print)
 				tmp_way->to_print = tmp_way->to_print->prev;
 			if (tmp_way->to_print && tmp_way->to_print->ant)

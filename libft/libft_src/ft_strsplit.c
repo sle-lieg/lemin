@@ -6,7 +6,7 @@
 /*   By: sle-lieg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/09 17:48:10 by sle-lieg          #+#    #+#             */
-/*   Updated: 2016/11/19 01:37:50 by sle-lieg         ###   ########.fr       */
+/*   Updated: 2017/04/20 18:20:21 by sle-lieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,12 +63,12 @@ static void	ft_fillarray(char **split, const char *s, char c)
 	}
 }
 
-char 		**ft_strsplit(const char *s, char c)
+char		**ft_strsplit(const char *s, char c)
 {
-	char 	**split;
-	int 	nb_words;
-	int 	i;
-	int 	j;
+	char	**split;
+	int		nb_words;
+	int		i;
+	int		j;
 
 	j = 0;
 	i = 0;

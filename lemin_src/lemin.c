@@ -6,7 +6,7 @@
 /*   By: sle-lieg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/29 21:44:47 by sle-lieg          #+#    #+#             */
-/*   Updated: 2017/04/19 14:20:29 by sle-lieg         ###   ########.fr       */
+/*   Updated: 2017/04/20 18:01:18 by sle-lieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int		main(int argc, char **argv)
 	return (0);
 }
 
-void 	ft_options(t_lemin *lem, int argc, char **argv)
+void	ft_options(t_lemin *lem, int argc, char **argv)
 {
 	int i;
 

@@ -6,13 +6,13 @@
 /*   By: sle-lieg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/17 13:23:22 by sle-lieg          #+#    #+#             */
-/*   Updated: 2017/04/19 19:16:33 by sle-lieg         ###   ########.fr       */
+/*   Updated: 2017/04/20 18:16:39 by sle-lieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-void 	ft_print_anthill(t_lemin *lem, int ant, char *name)
+void	ft_print_anthill(t_lemin *lem, int ant, char *name)
 {
 	if (lem->cmd & G)
 	{
@@ -33,7 +33,7 @@ void 	ft_print_anthill(t_lemin *lem, int ant, char *name)
 		ft_printf("L%d-%s ", ant, name);
 }
 
-void 	ft_print_map(t_lemin *lem)
+void	ft_print_map(t_lemin *lem)
 {
 	t_pars_lst *tmp;
 
@@ -45,7 +45,7 @@ void 	ft_print_map(t_lemin *lem)
 	}
 }
 
-void 	ft_print_options(t_lemin *lem)
+void	ft_print_options(t_lemin *lem)
 {
 	if (lem->cmd & H)
 		ft_print_hashtab(lem);
@@ -53,12 +53,13 @@ void 	ft_print_options(t_lemin *lem)
 		ft_print_way(lem);
 }
 
-void 	ft_print_way(t_lemin *lem)
+void	ft_print_way(t_lemin *lem)
 {
-	t_file *tmp_file;
-	t_conect *tmp;
-	int count = 0;
+	t_file		*tmp_file;
+	t_conect	*tmp;
+	int			count;
 
+	count = 0;
 	tmp_file = lem->way;
 	tmp_file ? ft_printf("\n{blue}++++++++++ WAY ++++++++++{eoc}\n") : 0;
 	while (tmp_file)
@@ -70,12 +71,10 @@ void 	ft_print_way(t_lemin *lem)
 		tmp = tmp_file->room;
 		while (tmp)
 		{
-			if (lem->cmd & G)
-				ft_printf("{yellow}%s{eoc}", tmp->name);
-			else
-				ft_printf("%s", tmp->name);
+			lem->cmd & G ? ft_printf("{yellow}%s{eoc}", tmp->name) :
+							ft_printf("%s", tmp->name);
 			tmp = tmp->next;
-			tmp	? ft_printf("->") : 0;
+			tmp ? ft_printf("->") : 0;
 		}
 		ft_printf("\n");
 		tmp_file = tmp_file->next;
